@@ -8,10 +8,5 @@
     X-Frame-Options "ALLOWALL"
   }
 
-  reverse_proxy {
-    dynamic a {
-      name {$FRONTEND_DOMAIN}
-      port {$FRONTEND_PORT}
-    }
-  }
+  reverse_proxy outline-production-d759.up.railway.app:3000
 }
