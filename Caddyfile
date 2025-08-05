@@ -1,5 +1,11 @@
 {
   auto_https off
+  log {
+    format json
+  }
+  servers {
+    trusted_proxies static private_ranges
+  }
 }
 
 :{$PORT} {
@@ -8,5 +14,11 @@
     X-Frame-Options "ALLOWALL"
   }
 
-  reverse_proxy outline-production-d759.up.railway.app:3000
+  reverse_proxy {
+    dynamic a {
+      name outline-production-d759.up.railway.app
+      port 3000
+      versions ipv4 ipv6
+    }
+  }
 }
